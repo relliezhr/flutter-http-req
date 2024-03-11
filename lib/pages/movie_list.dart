@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+import 'package:http_req/pages/movie_detail.dart';
+import 'package:http_req/service/http_service.dart';
+
+class MovieList extends StatefulWidget {
+  const MovieList({super.key});
+
+  @override
+  _MovieListState createState() => _MovieListState();
+}
+
+class _MovieListState extends State<MovieList> {
+  int moviesCount = 0;
+  List movies = [];
+  HttpService service = HttpService();
+
+  @override
+  void initState() {
+    super.initState();
+    service = HttpService();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    movies = await service.getPopularMovies() as List;
+    setState(() {
+      moviesCount = movies.length;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Your Movies"),
+        backgroundColor: Colors.purple,
+        foregroundColor: Colors.white,
+      ),
+      body: ListView.builder(
+        itemCount: moviesCount,
+        itemBuilder: (context, position) {
+          return Card(
+            color: Colors.white,
+            elevation: 2.0,
+            child: ListTile(
+              leading: Image(image: NetworkImage(movies[position].posterPath)),
+              title: Text(movies[position].title),
+              subtitle:
+                  Text('Rating: ${movies[position].voteAverage.toString()}'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => MovieDetail(movies[position]),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
