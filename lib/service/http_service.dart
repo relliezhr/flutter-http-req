@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:http_req/models/movie.dart';
 
 class HttpService {
-  final String baseUrl = 'http://localhost:8000/api/getmovie';
+  final String baseUrl = 'https://movie.tukanginyuk.com/api/getmovie';
 
   Future<List<Movie>?> getPopularMovies() async {
     final String uri = baseUrl;
