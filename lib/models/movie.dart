@@ -11,9 +11,9 @@ class Movie {
     return Movie(
       parsedJson['id'],
       parsedJson['title'],
-      parsedJson['vote_average'] * 1.0,
+      parsedJson['voteaverage'] * 1.0,
       parsedJson['overview'],
-      parsedJson['poster_path'],
+      parsedJson['posterpath'],
     );
   }
 }
