@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Your Movies',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+        useMaterial3: true, 
       ),
       home: const MyHomePage(),
     );
