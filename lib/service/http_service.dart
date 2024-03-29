@@ -15,7 +15,7 @@ class HttpService {
       final jsonResponse = json.decode(result.body);
       final moviesMap = jsonResponse['data'];
       List<Movie> movies =
-          List<Movie>.from(moviesMap.map((i) => Movie.fromJson(i)));
+          List<Movie>.from(moviesMap.map((i) => Movie.fromJson(i)).toList());
       return movies;
     } else {
       print("Failed: ${result.statusCode}");

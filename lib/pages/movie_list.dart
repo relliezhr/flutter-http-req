@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http_req/pages/movie_detail.dart';
+import 'package:http_req/models/movie.dart';
 import 'package:http_req/service/http_service.dart';
 
 class MovieList extends StatefulWidget {
@@ -11,7 +12,7 @@ class MovieList extends StatefulWidget {
 
 class _MovieListState extends State<MovieList> {
   int moviesCount = 0;
-  List movies = [];
+  List<Movie> movies = [];
   HttpService service = HttpService();
 
   @override
@@ -22,7 +23,7 @@ class _MovieListState extends State<MovieList> {
   }
 
   Future<void> initialize() async {
-    movies = await service.getPopularMovies() as List;
+    movies = await service.getPopularMovies() as List<Movie>;
     setState(() {
       moviesCount = movies.length;
     });
@@ -43,7 +44,9 @@ class _MovieListState extends State<MovieList> {
             color: Colors.white,
             elevation: 2.0,
             child: ListTile(
-              leading: Image(image: NetworkImage(movies[position].posterPath)),
+              leading: Image(
+                  image: NetworkImage(movies[position].posterPath ??
+                      "https://m.media-amazon.com/images/M/MV5BNjQwZDIyNjAtZGQxMC00OTUwLWFiOWYtNzg2NDc5Mjc1MDQ5XkEyXkFqcGdeQXVyMTAxNzQ1NzI@._V1_.jpg")),
               title: Text(movies[position].title),
               subtitle:
                   Text('Rating: ${movies[position].voteAverage.toString()}'),
