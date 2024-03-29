@@ -4,21 +4,22 @@ import 'package:http/http.dart' as http;
 import 'package:http_req/models/movie.dart';
 
 class HttpService {
-  final String baseUrl = 'https://movie.tukanginyuk.com/api/getmovie';
+  final String baseUrl = 'https://movie.tukanginyuk.com/api';
 
   Future<List<Movie>?> getPopularMovies() async {
-    final String uri = baseUrl;
+    final String uri = "$baseUrl/getmovie";
 
-    http.Response result = await http.get(Uri.parse(uri));
-    if (result.statusCode == HttpStatus.ok) {
+    http.Response response = await http.get(Uri.parse(uri));
+
+    if (response.statusCode == HttpStatus.ok) {
       print("Success");
-      final jsonResponse = json.decode(result.body);
-      final moviesMap = jsonResponse['data'];
+      final jsonResponse = json.decode(response.body);
+      final List moviesList = jsonResponse['data'];
       List<Movie> movies =
-          List<Movie>.from(moviesMap.map((i) => Movie.fromJson(i)).toList());
+          List<Movie>.from(moviesList.map((i) => Movie.fromJson(i)));
       return movies;
     } else {
-      print("Failed: ${result.statusCode}");
+      print("Failed: ${response.statusCode}");
       return null;
     }
   }
