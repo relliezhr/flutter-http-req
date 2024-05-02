@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http_req/models/movie.dart';
+<<<<<<< HEAD
 import 'package:http_req/pages/details/movie_detail.dart';
+=======
+import 'package:http_req/pages/movie_detail.dart';
+>>>>>>> 33bd7258ae8c3a3dd845bedc4f2ad541c13240ee
 import 'package:http_req/service/http_service.dart';
 
 class MovieList extends StatefulWidget {
