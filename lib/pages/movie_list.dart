@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http_req/pages/movie_detail.dart';
 import 'package:http_req/models/movie.dart';
+import 'package:http_req/pages/details/movie_detail.dart';
 import 'package:http_req/service/http_service.dart';
 
 class MovieList extends StatefulWidget {
@@ -34,7 +34,7 @@ class _MovieListState extends State<MovieList> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Movies"),
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
       body: ListView.builder(
